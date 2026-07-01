@@ -1,39 +1,839 @@
-<!-- clean install test -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Middlesex Fells Reservation – Trails, Maps & Visitor Guide</title>
-  <meta name="description" content="Everything you need to visit Middlesex Fells Reservation – trails, maps, parking, hours, and tips for hiking near Boston." />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Middlesex Fells Reservation — Trails, Maps &amp; Visitor Guide</title>
+<meta name="description" content="Your complete guide to Middlesex Fells Reservation: 100+ miles of free trails, ponds, parking, hours, and things to do near Boston, MA." />
+<link rel="canonical" href="https://www.middlesexfellsreservation.com/" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          forest: { DEFAULT: '#2D5016', dark: '#1f3810', light: '#3d6b1f' },
+          slate:  { DEFAULT: '#4A6B8A', dark: '#39536c' },
+          amber:  { DEFAULT: '#C4782A', dark: '#a3611f' },
+          stone:  { DEFAULT: '#F2F0EC', dark: '#e8e4dc' },
+          ink:    '#1A1A18',
+        },
+        fontFamily: {
+          display: ['Fraunces', 'serif'],
+          sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', ui-sans-serif, system-ui; color: #1A1A18; }
+  h1, h2, h3, .font-display { font-family: 'Fraunces', serif; }
+
+  section[id] { scroll-margin-top: 5.5rem; }
+
+  p, li { line-height: 1.7; }
+
+  .shadow-soft {
+    box-shadow: 0 1px 2px rgba(26,26,24,0.04), 0 2px 8px rgba(45,80,22,0.06);
+  }
+  .shadow-elevated {
+    box-shadow: 0 2px 4px rgba(26,26,24,0.04), 0 8px 24px rgba(45,80,22,0.10), 0 1px 0 rgba(45,80,22,0.04);
+  }
+  .shadow-floating {
+    box-shadow: 0 4px 8px rgba(26,26,24,0.06), 0 16px 40px rgba(45,80,22,0.16);
+  }
+
+  .card-lift {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .card-lift:hover, .card-lift:focus-within {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(26,26,24,0.06), 0 16px 40px rgba(45,80,22,0.16);
+  }
+
+  .btn-press { transition: transform 0.2s cubic-bezier(0.16,1,0.3,1), box-shadow 0.2s cubic-bezier(0.16,1,0.3,1), opacity 0.2s ease; }
+  .btn-press:hover { transform: translateY(-2px); }
+  .btn-press:active { transform: translateY(0px) scale(0.98); }
+
+  a, button { transition: color 0.2s ease, opacity 0.2s ease, transform 0.2s cubic-bezier(0.16,1,0.3,1); }
+
+  *:focus-visible {
+    outline: 2px solid #C4782A;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  .hero-overlay {
+    background:
+      radial-gradient(ellipse 90% 60% at 20% 0%, rgba(45,80,22,0.55), transparent 60%),
+      radial-gradient(ellipse 70% 60% at 100% 100%, rgba(74,107,138,0.55), transparent 60%),
+      linear-gradient(180deg, rgba(26,26,24,0.35) 0%, rgba(26,26,24,0.65) 100%);
+  }
+
+  .blaze-dot { width: 0.65rem; height: 0.65rem; border-radius: 9999px; display: inline-block; box-shadow: 0 0 0 2px rgba(26,26,24,0.08); }
+
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] .faq-icon { transform: rotate(45deg); }
+  .faq-icon { transition: transform 0.3s cubic-bezier(0.16,1,0.3,1); }
+  details[open] .subnav-icon { transform: rotate(180deg); }
+  .subnav-icon { transition: transform 0.3s cubic-bezier(0.16,1,0.3,1); }
+
+  #mobile-menu { transition: opacity 0.25s cubic-bezier(0.16,1,0.3,1), transform 0.25s cubic-bezier(0.16,1,0.3,1); }
+  #mobile-menu.closed { opacity: 0; transform: translateY(-8px); pointer-events: none; }
+
+  .dropdown-panel {
+    transition: opacity 0.2s cubic-bezier(0.16,1,0.3,1), transform 0.2s cubic-bezier(0.16,1,0.3,1), visibility 0.2s;
+  }
+  .nav-item { position: relative; }
+  .nav-item .dropdown-panel {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(4px);
+  }
+  .nav-item:hover .dropdown-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .nav-chevron { transition: transform 0.2s cubic-bezier(0.16,1,0.3,1); }
+  .nav-item:hover .nav-chevron { transform: rotate(180deg); }
+
+  .img-treat { position: relative; overflow: hidden; }
+  .img-treat img { mix-blend-mode: multiply; }
+  .img-treat::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,26,24,0.55), rgba(26,26,24,0) 55%), rgba(45,80,22,0.12);
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Park",
+  "name": "Middlesex Fells Reservation",
+  "description": "A 2,200-acre public recreation area with 100+ miles of trails, managed by the Massachusetts Department of Conservation and Recreation, located 5 miles north of Boston.",
+  "url": "https://www.middlesexfellsreservation.com/",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "4 Woodland Road",
+    "addressLocality": "Stoneham",
+    "addressRegion": "MA",
+    "postalCode": "02180",
+    "addressCountry": "US"
+  },
+  "isAccessibleForFree": true,
+  "publicAccess": true
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Is Middlesex Fells Reservation free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Middlesex Fells Reservation is free and open to the public year-round. There is no entrance fee, and parking is also free at all designated lots."}},
+    {"@type":"Question","name":"Where is Middlesex Fells Reservation?","acceptedAnswer":{"@type":"Answer","text":"Middlesex Fells Reservation spans five towns in Middlesex County: Malden, Medford, Melrose, Stoneham, and Winchester, Massachusetts, approximately 5 miles north of downtown Boston."}},
+    {"@type":"Question","name":"How big is Middlesex Fells Reservation?","acceptedAnswer":{"@type":"Answer","text":"Middlesex Fells Reservation covers 2,575 acres of rocky, hilly terrain in eastern Massachusetts, making it one of the largest urban nature reserves in the northeastern United States."}},
+    {"@type":"Question","name":"Are dogs allowed at Middlesex Fells?","acceptedAnswer":{"@type":"Answer","text":"Dogs are welcome throughout the reservation on leash, except inside the designated off-leash area at the Sheepfold field, where dogs must remain under voice control."}},
+    {"@type":"Question","name":"Can you swim at Middlesex Fells?","acceptedAnswer":{"@type":"Answer","text":"No. Swimming is prohibited throughout the Middlesex Fells Reservation, including Spot Pond, Bellevue Pond, Wright's Pond, and the High, Middle, and Low Reservoirs in Winchester."}},
+    {"@type":"Question","name":"How many trails does Middlesex Fells have?","acceptedAnswer":{"@type":"Answer","text":"The reservation has over 100 miles of trails for hiking, mountain biking, cross-country skiing, and horseback riding, ranging from easy nature walks to challenging ridge routes."}},
+    {"@type":"Question","name":"What is the best trail at Middlesex Fells?","acceptedAnswer":{"@type":"Answer","text":"The Skyline Trail is the most popular. It offers panoramic Boston views from the park's granite ridges and covers 7.6 miles. For beginners, the Long Pond Nature Trail at 1.7 miles is a great starting point."}},
+    {"@type":"Question","name":"Is Middlesex Fells good for families?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Sheepfold picnic area, easy flat trails, and open fields make it one of the best family outdoor destinations near Boston."}},
+    {"@type":"Question","name":"What towns is Middlesex Fells in?","acceptedAnswer":{"@type":"Answer","text":"Middlesex Fells Reservation covers land in Malden, Medford, Melrose, Stoneham, and Winchester, Massachusetts."}},
+    {"@type":"Question","name":"Is there public transit to Middlesex Fells?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Oak Grove T stop on the Orange Line is a 15-minute walk from the reservation, and MBTA bus routes 99 and 132 also provide access from Malden Center."}}
+  ]
+}
+</script>
 </head>
-<body>
 
-  <header>
-    <h1>Middlesex Fells Reservation</h1>
-    <p>Your complete guide to hiking, trails, and exploring the Fells near Boston.</p>
-  </header>
+<body class="bg-stone text-ink antialiased">
 
-  <main>
-    <section>
-      <h2>About Middlesex Fells</h2>
-      <p>Middlesex Fells Reservation is a 2,500-acre state park just north of Boston, spanning the towns of Medford, Malden, Stoneham, Winchester, and Melrose. It's one of the oldest state parks in Massachusetts and a favorite escape for hikers, trail runners, and families.</p>
-    </section>
+<a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-3 focus:left-3 focus:bg-forest focus:text-white focus:px-4 focus:py-2 focus:rounded">Skip to content</a>
 
-    <section>
-      <h2>Trails</h2>
-      <p>The Fells offers over 100 miles of trails ranging from easy walks to rugged rocky terrain. Popular routes include the Skyline Trail, the Rock Circuit Trail, and the Cross Fells Trail.</p>
-    </section>
+<header class="sticky top-0 z-40 bg-stone/95 backdrop-blur border-b border-ink/5 shadow-soft">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+    <a href="#top" class="font-display font-semibold text-lg sm:text-xl tracking-tight text-forest">
+      Middlesex Fells <span class="text-amber">Reservation</span>
+    </a>
 
-    <section>
-      <h2>Parking & Access</h2>
-      <p>Multiple parking areas are available throughout the reservation. The main entrance is off Fellsway West in Medford. Parking is free.</p>
-    </section>
-  </main>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-ink/80">
+      <a href="#top" class="hover:text-forest">Home</a>
+      <a href="about.html" class="hover:text-forest">About the Park</a>
+      <div class="nav-item">
+        <a href="trail-map.html" class="hover:text-forest inline-flex items-center gap-1">
+          Trails
+          <svg class="nav-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </a>
+        <div class="dropdown-panel absolute left-0 top-full pt-3 z-50">
+          <div class="bg-white rounded-lg shadow-floating border border-ink/5 p-6 flex flex-col gap-1.5 w-56 text-sm font-normal text-ink/80">
+            <a href="trail-map.html" class="hover:text-forest py-1">Trail Map</a>
+            <a href="skyline-trail.html" class="hover:text-forest py-1">Skyline Trail</a>
+            <a href="rock-circuit-trail.html" class="hover:text-forest py-1">Rock Circuit Trail</a>
+            <a href="cross-fells-trail.html" class="hover:text-forest py-1">Cross Fells Trail</a>
+            <a href="bear-hill-trail.html" class="hover:text-forest py-1">Bear Hill Trail</a>
+            <a href="mustang-loop-trail.html" class="hover:text-forest py-1">Mustang Loop Trail</a>
+            <a href="pickerel-rock.html" class="hover:text-forest py-1">Pickerel Rock</a>
+          </div>
+        </div>
+      </div>
 
-  <footer>
-    <p>&copy; 2026 MiddlesexFellsReservation.com – Not affiliated with the state of Massachusetts.</p>
-  </footer>
+      <div class="nav-item">
+        <a href="#things-to-do" class="hover:text-forest inline-flex items-center gap-1">
+          Activities
+          <svg class="nav-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </a>
+        <div class="dropdown-panel absolute left-0 top-full pt-3 z-50">
+          <div class="bg-white rounded-lg shadow-floating border border-ink/5 p-6 grid grid-cols-2 gap-x-10 gap-y-1.5 w-[420px] text-sm font-normal text-ink/80">
+            <a href="hiking.html" class="hover:text-forest py-1">Hiking</a>
+            <a href="mountain-biking.html" class="hover:text-forest py-1">Mountain Biking</a>
+            <a href="dog-park.html" class="hover:text-forest py-1">Dog Park</a>
+            <a href="fishing.html" class="hover:text-forest py-1">Fishing</a>
+            <a href="horseback-riding.html" class="hover:text-forest py-1">Horseback Riding</a>
+            <a href="cross-country-skiing.html" class="hover:text-forest py-1">Cross-Country Skiing</a>
+            <a href="canoe-and-kayaking.html" class="hover:text-forest py-1">Canoe and Kayaking</a>
+            <a href="swimming.html" class="hover:text-forest py-1">Swimming</a>
+            <a href="observation-tower.html" class="hover:text-forest py-1">Observation Tower</a>
+            <a href="spot-pond.html" class="hover:text-forest py-1">Spot Pond</a>
+            <a href="bellevue-pond.html" class="hover:text-forest py-1">Bellevue Pond</a>
+            <a href="wrights-pond.html" class="hover:text-forest py-1">Wright's Pond</a>
+            <a href="middlesex-fells-reservoir.html" class="hover:text-forest py-1">Middlesex Fells Reservoir</a>
+          </div>
+        </div>
+      </div>
+
+      <a href="parking.html" class="hover:text-forest">Parking &amp; Directions</a>
+      <a href="hours.html" class="hover:text-forest">Hours &amp; Fees</a>
+      <a href="faq.html" class="hover:text-forest">FAQ</a>
+    </nav>
+
+    <a href="trail-map.html" class="hidden md:inline-flex btn-press items-center gap-2 bg-forest text-white text-sm font-semibold px-4 py-2.5 rounded-md shadow-soft hover:bg-forest-dark focus-visible:outline-offset-2">
+      View Trail Map
+    </a>
+
+    <button id="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden p-2 -mr-2 text-forest" aria-label="Toggle menu">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+
+  <nav id="mobile-menu" class="closed md:hidden absolute left-0 right-0 bg-stone border-b border-ink/10 shadow-floating">
+    <div class="flex flex-col px-5 py-4 gap-1 text-base font-medium">
+      <a href="#top" class="py-2.5 border-b border-ink/5">Home</a>
+      <a href="about.html" class="py-2.5 border-b border-ink/5">About the Park</a>
+      <details class="border-b border-ink/5">
+        <summary class="flex items-center justify-between py-2.5">
+          Trails
+          <svg class="subnav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="flex flex-col gap-1 pb-3 pl-3 text-sm font-normal text-ink/80">
+          <a href="trail-map.html" class="py-1.5">Trail Map</a>
+          <a href="skyline-trail.html" class="py-1.5">Skyline Trail</a>
+          <a href="rock-circuit-trail.html" class="py-1.5">Rock Circuit Trail</a>
+          <a href="cross-fells-trail.html" class="py-1.5">Cross Fells Trail</a>
+          <a href="bear-hill-trail.html" class="py-1.5">Bear Hill Trail</a>
+          <a href="mustang-loop-trail.html" class="py-1.5">Mustang Loop Trail</a>
+          <a href="pickerel-rock.html" class="py-1.5">Pickerel Rock</a>
+        </div>
+      </details>
+
+      <details class="border-b border-ink/5">
+        <summary class="flex items-center justify-between py-2.5">
+          Activities
+          <svg class="subnav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="flex flex-col gap-1 pb-3 pl-3 text-sm font-normal text-ink/80">
+          <a href="hiking.html" class="py-1.5">Hiking</a>
+          <a href="mountain-biking.html" class="py-1.5">Mountain Biking</a>
+          <a href="dog-park.html" class="py-1.5">Dog Park</a>
+          <a href="fishing.html" class="py-1.5">Fishing</a>
+          <a href="horseback-riding.html" class="py-1.5">Horseback Riding</a>
+          <a href="cross-country-skiing.html" class="py-1.5">Cross-Country Skiing</a>
+          <a href="canoe-and-kayaking.html" class="py-1.5">Canoe and Kayaking</a>
+          <a href="swimming.html" class="py-1.5">Swimming</a>
+          <a href="observation-tower.html" class="py-1.5">Observation Tower</a>
+          <a href="spot-pond.html" class="py-1.5">Spot Pond</a>
+          <a href="bellevue-pond.html" class="py-1.5">Bellevue Pond</a>
+          <a href="wrights-pond.html" class="py-1.5">Wright's Pond</a>
+          <a href="middlesex-fells-reservoir.html" class="py-1.5">Middlesex Fells Reservoir</a>
+        </div>
+      </details>
+
+      <a href="parking.html" class="py-2.5 border-b border-ink/5">Parking &amp; Directions</a>
+      <a href="hours.html" class="py-2.5 border-b border-ink/5">Hours &amp; Fees</a>
+      <a href="faq.html" class="py-2.5">FAQ</a>
+      <a href="trail-map.html" class="mt-3 text-center bg-forest text-white font-semibold px-4 py-2.5 rounded-md">View Trail Map</a>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section id="top" class="relative">
+    <div class="relative h-[86vh] min-h-[560px] max-h-[820px] img-treat">
+      <img src="https://placehold.co/1600x1200/2D5016/2D5016" alt="Autumn foliage reflected in Spot Pond at Middlesex Fells Reservation" class="absolute inset-0 w-full h-full object-cover" />
+      <div class="hero-overlay absolute inset-0"></div>
+      <div class="grain absolute inset-0" style="background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyMDAnIGhlaWdodD0nMjAwJz48ZmlsdGVyIGlkPSduJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC44NScgbnVtT2N0YXZlcz0nMicgc3RpdGNoVGlsZXM9J3N0aXRjaCcvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPScxMDAlJyBoZWlnaHQ9JzEwMCUnIGZpbHRlcj0ndXJsKCNuKScvPjwvc3ZnPg==')"></div>
+
+      <div class="relative z-10 h-full max-w-7xl mx-auto px-5 sm:px-8 flex flex-col justify-end pb-16 sm:pb-20">
+        <p class="text-amber font-semibold tracking-[0.18em] uppercase text-xs sm:text-sm mb-4">Stoneham · Medford · Winchester, MA</p>
+        <h1 class="font-display font-semibold text-white text-4xl sm:text-6xl lg:text-7xl leading-[1.05] tracking-[-0.03em] max-w-3xl">
+          Middlesex Fells Reservation — Your Complete Guide
+        </h1>
+        <p class="text-white/90 text-base sm:text-lg max-w-xl mt-6 leading-[1.7]">
+          Over 100 miles of trails, free admission, and wild nature just 5 miles from Boston. Whether you're hiking, biking, fishing, or exploring with your dog — the Fells has something for everyone.
+        </p>
+
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="trail-map.html" class="btn-press bg-amber hover:bg-amber-dark text-white font-semibold px-6 py-3 rounded-md shadow-elevated">Find a Trail</a>
+          <a href="#visit" class="btn-press bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-md border border-white/30 backdrop-blur-sm">Plan Your Visit</a>
+        </div>
+
+        <ul class="flex flex-wrap gap-x-6 gap-y-2 mt-8 text-white/85 text-sm font-medium">
+          <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C4782A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><path d="M12 2 2 22h20L12 2Z"/></svg>5 miles from Boston</li>
+          <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C4782A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>Free</li>
+          <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C4782A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Open year-round</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- AT A GLANCE -->
+  <section class="bg-forest text-white">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-10">
+      <h2 class="font-display text-xl sm:text-2xl font-semibold tracking-tight mb-6">Middlesex Fells Reservation at a Glance</h2>
+      <dl class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-7">
+        <div><dt class="text-white/60 text-xs uppercase tracking-wider mb-1">Location</dt><dd class="font-medium text-sm sm:text-base">Malden, Medford, Melrose, Stoneham &amp; Winchester, MA</dd></div>
+        <div><dt class="text-white/60 text-xs uppercase tracking-wider mb-1">Size</dt><dd class="font-medium text-sm sm:text-base">2,575 acres</dd></div>
+        <div><dt class="text-white/60 text-xs uppercase tracking-wider mb-1">Managed by</dt><dd class="font-medium text-sm sm:text-base">MA Dept. of Conservation &amp; Recreation (DCR)</dd></div>
+        <div><dt class="text-white/60 text-xs uppercase tracking-wider mb-1">Trails</dt><dd class="font-medium text-sm sm:text-base">100+ miles, all difficulty levels</dd></div>
+        <div><dt class="text-white/60 text-xs uppercase tracking-wider mb-1">Entrance Fee</dt><dd class="font-medium text-sm sm:text-base">Free</dd></div>
+        <div><dt class="text-white/60 text-xs uppercase tracking-wider mb-1">Parking</dt><dd class="font-medium text-sm sm:text-base">Multiple lots, free</dd></div>
+        <div><dt class="text-white/60 text-xs uppercase tracking-wider mb-1">Dogs</dt><dd class="font-medium text-sm sm:text-base">Yes &mdash; leash required (off-leash at Sheepfold)</dd></div>
+        <div><dt class="text-white/60 text-xs uppercase tracking-wider mb-1">Fishing</dt><dd class="font-medium text-sm sm:text-base">Spot Pond &amp; other ponds</dd></div>
+        <div><dt class="text-white/60 text-xs uppercase tracking-wider mb-1">Hours</dt><dd class="font-medium text-sm sm:text-base">Dawn to dusk, year-round</dd></div>
+        <div><dt class="text-white/60 text-xs uppercase tracking-wider mb-1">Public Transit</dt><dd class="font-medium text-sm sm:text-base">Yes &mdash; Orange Line + bus routes</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- WHAT IS -->
+  <section class="max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-20">
+    <div class="max-w-3xl">
+      <h2 class="font-display font-semibold text-3xl sm:text-4xl tracking-tight mb-5">What Is Middlesex Fells Reservation?</h2>
+      <p class="text-ink/80 text-base sm:text-lg">
+        Middlesex Fells Reservation — often called simply "the Fells" — is a public recreation area covering more than 2,200 acres in Malden, Medford, Melrose, Stoneham, and Winchester, Massachusetts. Established in 1894, it is one of the oldest and largest urban nature preserves in the United States, located just 5 miles north of Boston. The park is managed by the Massachusetts Department of Conservation and Recreation (DCR) and is part of the Metropolitan Park System of Greater Boston. With over 100 miles of mixed-use trails, visitors can hike, bike, paddle, and explore for all difficulty levels — all for free.
+      </p>
+    </div>
+  </section>
+
+  <!-- THINGS TO DO -->
+  <section id="things-to-do" class="bg-white py-16 sm:py-20 border-y border-ink/5">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="max-w-2xl mb-10">
+        <h2 class="font-display font-semibold text-3xl sm:text-4xl tracking-tight mb-4">What to Do at Middlesex Fells</h2>
+        <p class="text-ink/70">From rugged ridge hikes with Boston skyline views to lazy afternoons by the water, the Fells packs a surprising amount of adventure into one of Greater Boston's most beloved green spaces.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+        <a href="trail-map.html" class="card-lift group bg-stone rounded-lg p-6 shadow-soft flex flex-col">
+          <span class="w-11 h-11 rounded-md bg-forest/10 text-forest flex items-center justify-center mb-4">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3Z"/></svg>
+          </span>
+          <h3 class="font-display font-semibold text-lg mb-2">Hiking</h3>
+          <p class="text-sm text-ink/70 flex-1">The reservation's 2,575 acres offer suitable terrain for hikers of all experience levels, from easy pond-side walks to challenging ridge scrambles over exposed granite. Download the trail map before you go &mdash; some sections aren't well marked.</p>
+          <span class="mt-4 text-sm font-semibold text-forest group-hover:text-amber inline-flex items-center gap-1">Explore Trails <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a href="mountain-biking.html" class="card-lift group bg-stone rounded-lg p-6 shadow-soft flex flex-col">
+          <span class="w-11 h-11 rounded-md bg-forest/10 text-forest flex items-center justify-center mb-4">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="17" r="3.5"/><circle cx="18" cy="17" r="3.5"/><path d="M6 17 10 8h4l4 9M10 8 8 5h2"/></svg>
+          </span>
+          <h3 class="font-display font-semibold text-lg mb-2">Mountain Biking</h3>
+          <p class="text-sm text-ink/70 flex-1">The Mountain Bike Loop covers 6.5 miles on fire roads with some single-track sections, offering a scenic ride through the western Fells with an average riding time of about one hour.</p>
+          <span class="mt-4 text-sm font-semibold text-forest group-hover:text-amber inline-flex items-center gap-1">Mountain Biking Guide <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a href="canoe-and-kayaking.html" class="card-lift group bg-stone rounded-lg p-6 shadow-soft flex flex-col">
+          <span class="w-11 h-11 rounded-md bg-slate/10 text-slate flex items-center justify-center mb-4">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 19c2-3 6-3 8 0s6 3 8 0M4 15 15 4l5 5-11 11"/></svg>
+          </span>
+          <h3 class="font-display font-semibold text-lg mb-2">Canoe &amp; Kayaking</h3>
+          <p class="text-sm text-ink/70 flex-1">Rent a kayak or canoe and explore Spot Pond, right in the heart of Middlesex Fells. It's one of the most popular warm-weather destinations in the park.</p>
+          <span class="mt-4 text-sm font-semibold text-forest group-hover:text-amber inline-flex items-center gap-1">Canoe &amp; Kayaking Guide <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a href="dog-park.html" class="card-lift group bg-stone rounded-lg p-6 shadow-soft flex flex-col">
+          <span class="w-11 h-11 rounded-md bg-amber/10 text-amber flex items-center justify-center mb-4">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="7" r="1.6"/><circle cx="11" cy="4.5" r="1.6"/><circle cx="16" cy="7" r="1.6"/><circle cx="19" cy="12" r="1.6"/><path d="M12 22c-3 0-5-1.8-5-4 0-1.8 1.4-2.6 1.4-4.3 0-1.7 1.6-2.7 3.6-2.7s3.6 1 3.6 2.7c0 1.7 1.4 2.5 1.4 4.3 0 2.2-2 4-5 4Z"/></svg>
+          </span>
+          <h3 class="font-display font-semibold text-lg mb-2">Dogs &amp; Off-Leash Area</h3>
+          <p class="text-sm text-ink/70 flex-1">Dogs are welcome throughout the reservation on leash, with a designated off-leash area at the Sheepfold field where dogs must remain under voice control. Up to four dogs per handler allowed.</p>
+          <span class="mt-4 text-sm font-semibold text-forest group-hover:text-amber inline-flex items-center gap-1">Dogs Guide <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <div class="bg-stone rounded-lg p-6 shadow-soft flex flex-col">
+          <span class="w-11 h-11 rounded-md bg-slate/10 text-slate flex items-center justify-center mb-4">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="17" r="1.6"/><circle cx="12" cy="10" r="1.6"/><circle cx="17" cy="5" r="1.6"/><path d="M7 17 12 10 17 5"/></svg>
+          </span>
+          <h3 class="font-display font-semibold text-lg mb-2">Rock Climbing</h3>
+          <p class="text-sm text-ink/70 flex-1">The Fells' granite outcrops draw climbers looking for a quick technical challenge close to the city. No permit required for bouldering.</p>
+        </div>
+
+        <div class="bg-stone rounded-lg p-6 shadow-soft flex flex-col">
+          <span class="w-11 h-11 rounded-md bg-forest/10 text-forest flex items-center justify-center mb-4">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+          </span>
+          <h3 class="font-display font-semibold text-lg mb-2">Picnicking</h3>
+          <p class="text-sm text-ink/70 flex-1">The Sheepfold is 10 acres of open field, ideal for picnics, frisbee, and informal games. It's the most popular family gathering spot in the park.</p>
+        </div>
+
+        <div class="bg-stone rounded-lg p-6 shadow-soft flex flex-col">
+          <span class="w-11 h-11 rounded-md bg-amber/10 text-amber flex items-center justify-center mb-4">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12c3-4 6-4 8 0 2-4 5-4 8 0"/><path d="M4 17c3-4 6-4 8 0 2-4 5-4 8 0"/></svg>
+          </span>
+          <h3 class="font-display font-semibold text-lg mb-2">Birdwatching &amp; Wildlife</h3>
+          <p class="text-sm text-ink/70 flex-1">Keep an eye out for coyote, red fox, and white-tailed deer throughout the reservation. The reservoirs and forested ridges make this one of the best urban birding spots in eastern Massachusetts.</p>
+        </div>
+
+        <a href="cross-country-skiing.html" class="card-lift group bg-stone rounded-lg p-6 shadow-soft flex flex-col">
+          <span class="w-11 h-11 rounded-md bg-slate/10 text-slate flex items-center justify-center mb-4">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M12 2 8 6m4-4 4 4M12 22l-4-4m4 4 4-4M5 8l14 8M19 8 5 16"/></svg>
+          </span>
+          <h3 class="font-display font-semibold text-lg mb-2">Winter Activities</h3>
+          <p class="text-sm text-ink/70 flex-1">When the snow falls, the Fells transforms into a cross-country skiing and snowshoeing destination &mdash; same trails, zero crowds.</p>
+          <span class="mt-4 text-sm font-semibold text-forest group-hover:text-amber inline-flex items-center gap-1">Cross-Country Skiing <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a href="fishing.html" class="card-lift group bg-stone rounded-lg p-6 shadow-soft flex flex-col">
+          <span class="w-11 h-11 rounded-md bg-slate/10 text-slate flex items-center justify-center mb-4">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-6 11-6 9 6 9 6-2 6-9 6-11-6-11-6Z"/><circle cx="16" cy="12" r="1"/><path d="m2 12-2-3m2 3-2 3"/></svg>
+          </span>
+          <h3 class="font-display font-semibold text-lg mb-2">Fishing</h3>
+          <p class="text-sm text-ink/70 flex-1">Bass, perch, and pickerel at Spot Pond, Bellevue Pond, and Wright's Pond. MA fishing license required.</p>
+          <span class="mt-4 text-sm font-semibold text-forest group-hover:text-amber inline-flex items-center gap-1">Fishing Guide <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a href="horseback-riding.html" class="card-lift group bg-stone rounded-lg p-6 shadow-soft flex flex-col">
+          <span class="w-11 h-11 rounded-md bg-amber/10 text-amber flex items-center justify-center mb-4">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21c1-4 2-6 2-9 0-3 2-6 6-6 3 0 4 2 4 2s3-1 4 1-1 3-1 3l1 2-3 1v6M9 21v-4"/></svg>
+          </span>
+          <h3 class="font-display font-semibold text-lg mb-2">Horseback Riding</h3>
+          <p class="text-sm text-ink/70 flex-1">Bridle paths wind through the West Fells for riders bringing their own horse &mdash; no rentals on site.</p>
+          <span class="mt-4 text-sm font-semibold text-forest group-hover:text-amber inline-flex items-center gap-1">Riding Guide <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAILS -->
+  <section id="trails" class="max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-20">
+    <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
+      <div class="max-w-2xl">
+        <h2 class="font-display font-semibold text-3xl sm:text-4xl tracking-tight mb-4">Most Popular Trails</h2>
+        <p class="text-ink/70">Not sure where to start? These are the trails locals keep coming back to.</p>
+      </div>
+      <a href="trail-map.html" class="hidden sm:inline-flex btn-press items-center gap-1 text-forest font-semibold hover:text-amber">View All Trails <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <a href="skyline-trail.html" class="card-lift bg-white rounded-lg shadow-soft overflow-hidden flex flex-col">
+        <div class="h-36 img-treat"><img src="https://placehold.co/600x300/2D5016/1A1A18" alt="Skyline Trail ridgeline view at Middlesex Fells" class="absolute inset-0 w-full h-full object-cover" /></div>
+        <div class="p-5 flex flex-col flex-1">
+          <div class="flex items-center gap-2 text-xs font-semibold text-ink/60 mb-2">
+            <span class="blaze-dot bg-white border border-ink/30"></span> White blazes &middot; 7.6 miles &middot; <span class="text-amber-dark">Difficult</span>
+          </div>
+          <h3 class="font-display font-semibold text-lg mb-2">Skyline Trail</h3>
+          <p class="text-sm text-ink/70 flex-1">The signature trail of the Fells &mdash; panoramic Boston views from dramatic granite ridges. Plan 4&ndash;5 hours.</p>
+          <span class="mt-4 text-sm font-semibold text-forest inline-flex items-center gap-1">View Trail <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a href="trail-map.html" class="card-lift bg-white rounded-lg shadow-soft overflow-hidden flex flex-col">
+        <div class="h-36 img-treat"><img src="https://placehold.co/600x300/4A6B8A/1A1A18" alt="Western reservoirs loop at Middlesex Fells" class="absolute inset-0 w-full h-full object-cover" /></div>
+        <div class="p-5 flex flex-col flex-1">
+          <div class="flex items-center gap-2 text-xs font-semibold text-ink/60 mb-2">
+            <span class="blaze-dot bg-orange-500"></span> Orange blazes &middot; 6.2 miles &middot; <span class="text-amber-dark">Moderate</span>
+          </div>
+          <h3 class="font-display font-semibold text-lg mb-2">Reservoir Trail</h3>
+          <p class="text-sm text-ink/70 flex-1">A beloved loop hugging the western reservoirs. Great for joggers and casual hikers. Average hiking time: 3.5 hours.</p>
+          <span class="mt-4 text-sm font-semibold text-forest inline-flex items-center gap-1">View Trail <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a href="rock-circuit-trail.html" class="card-lift bg-white rounded-lg shadow-soft overflow-hidden flex flex-col">
+        <div class="h-36 img-treat"><img src="https://placehold.co/600x300/4A6B8A/1A1A18" alt="Granite ledges on the Rock Circuit Trail" class="absolute inset-0 w-full h-full object-cover" /></div>
+        <div class="p-5 flex flex-col flex-1">
+          <div class="flex items-center gap-2 text-xs font-semibold text-ink/60 mb-2">
+            <span class="blaze-dot bg-white border border-ink/30"></span> White blazes &middot; 3.7 miles &middot; <span class="text-amber-dark">Moderate</span>
+          </div>
+          <h3 class="font-display font-semibold text-lg mb-2">Rock Circuit Trail</h3>
+          <p class="text-sm text-ink/70 flex-1">This loop takes you up and over several hills with excellent views, passing a few small ponds and brooks along the way.</p>
+          <span class="mt-4 text-sm font-semibold text-forest inline-flex items-center gap-1">View Trail <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a href="mountain-biking.html" class="card-lift bg-white rounded-lg shadow-soft overflow-hidden flex flex-col">
+        <div class="h-36 img-treat"><img src="https://placehold.co/600x300/3d6b1f/1A1A18" alt="Fire road on the Mountain Bike Loop through the western Fells" class="absolute inset-0 w-full h-full object-cover" /></div>
+        <div class="p-5 flex flex-col flex-1">
+          <div class="flex items-center gap-2 text-xs font-semibold text-ink/60 mb-2">
+            <span class="blaze-dot bg-green-500"></span> Green blazes &middot; 6.5 miles &middot; <span class="text-amber-dark">Easy&ndash;Moderate</span>
+          </div>
+          <h3 class="font-display font-semibold text-lg mb-2">Mountain Bike Loop</h3>
+          <p class="text-sm text-ink/70 flex-1">Fire roads + single track through the western Fells. Best beginner bike trail in the park. Average riding time: 1 hour.</p>
+          <span class="mt-4 text-sm font-semibold text-forest inline-flex items-center gap-1">View Trail <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a href="trail-map.html" class="card-lift bg-white rounded-lg shadow-soft overflow-hidden flex flex-col">
+        <div class="h-36 img-treat"><img src="https://placehold.co/600x300/C4782A/1A1A18" alt="Long Pond Nature Trail, a quiet scenic walk at Middlesex Fells" class="absolute inset-0 w-full h-full object-cover" /></div>
+        <div class="p-5 flex flex-col flex-1">
+          <div class="flex items-center gap-2 text-xs font-semibold text-ink/60 mb-2">
+            <span class="blaze-dot bg-yellow-400"></span> Yellow blazes &middot; 1.7 miles &middot; <span class="text-amber-dark">Easy</span>
+          </div>
+          <h3 class="font-display font-semibold text-lg mb-2">Long Pond Nature Trail</h3>
+          <p class="text-sm text-ink/70 flex-1">Perfect for families and first-timers. A quiet, scenic nature walk with minimal elevation. Average hiking time: 1 hour.</p>
+          <span class="mt-4 text-sm font-semibold text-forest inline-flex items-center gap-1">View Trail <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a href="cross-fells-trail.html" class="card-lift bg-white rounded-lg shadow-soft overflow-hidden flex flex-col">
+        <div class="h-36 img-treat"><img src="https://placehold.co/600x300/1f3810/1A1A18" alt="Forested section of the Cross Fells Trail" class="absolute inset-0 w-full h-full object-cover" /></div>
+        <div class="p-5 flex flex-col flex-1">
+          <div class="flex items-center gap-2 text-xs font-semibold text-ink/60 mb-2">
+            <span class="blaze-dot bg-blue-600"></span> Blue Blazes &middot; 4.7 mi &middot; <span class="text-amber-dark">Difficult</span>
+          </div>
+          <h3 class="font-display font-semibold text-lg mb-2">Cross Fells Trail</h3>
+          <p class="text-sm text-ink/70 flex-1">A point-to-point route across the full breadth of the reservation, linking the East and West Fells.</p>
+          <span class="mt-4 text-sm font-semibold text-forest inline-flex items-center gap-1">View Trail <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a href="bear-hill-trail.html" class="card-lift bg-white rounded-lg shadow-soft overflow-hidden flex flex-col">
+        <div class="h-36 img-treat"><img src="https://placehold.co/600x300/C4782A/1A1A18" alt="Bear Hill Observation Tower at the summit" class="absolute inset-0 w-full h-full object-cover" /></div>
+        <div class="p-5 flex flex-col flex-1">
+          <div class="flex items-center gap-2 text-xs font-semibold text-ink/60 mb-2">
+            <span class="blaze-dot bg-ink/70"></span> Loop / Out-and-Back &middot; <span class="text-amber-dark">Moderate</span>
+          </div>
+          <h3 class="font-display font-semibold text-lg mb-2">Bear Hill Trail</h3>
+          <p class="text-sm text-ink/70 flex-1">A short hike with a real payoff &mdash; the historic tower and Boston skyline views at 317 feet, the Fells' high point.</p>
+          <span class="mt-4 text-sm font-semibold text-forest inline-flex items-center gap-1">View Trail <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a href="mustang-loop-trail.html" class="card-lift bg-white rounded-lg shadow-soft overflow-hidden flex flex-col">
+        <div class="h-36 img-treat"><img src="https://placehold.co/600x300/4A6B8A/1A1A18" alt="Singletrack trail through the West Fells" class="absolute inset-0 w-full h-full object-cover" /></div>
+        <div class="p-5 flex flex-col flex-1">
+          <div class="flex items-center gap-2 text-xs font-semibold text-ink/60 mb-2">
+            <span class="blaze-dot bg-green-500"></span> Green Blazes &middot; Loop &middot; <span class="text-amber-dark">Moderate</span>
+          </div>
+          <h3 class="font-display font-semibold text-lg mb-2">Mustang Loop Trail</h3>
+          <p class="text-sm text-ink/70 flex-1">The go-to mountain biking loop in the West Fells &mdash; flowy singletrack shared with hikers on weekends.</p>
+          <span class="mt-4 text-sm font-semibold text-forest inline-flex items-center gap-1">View Trail <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a href="trail-map.html" class="card-lift bg-forest text-white rounded-lg shadow-soft overflow-hidden flex flex-col items-start justify-center p-6">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C4782A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-4"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"/><path d="M9 4v14M15 6v14"/></svg>
+        <h3 class="font-display font-semibold text-lg mb-2">See the Full Trail Map</h3>
+        <p class="text-sm text-white/75 mb-4">100+ miles of trails, all difficulty levels, plus the official DCR map download.</p>
+        <span class="text-sm font-semibold text-amber inline-flex items-center gap-1">Open Trail Map <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- PONDS & LANDMARKS -->
+  <section id="ponds" class="bg-white py-16 sm:py-20 border-y border-ink/5">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="max-w-2xl mb-10">
+        <h2 class="font-display font-semibold text-3xl sm:text-4xl tracking-tight mb-4">Ponds &amp; Landmarks</h2>
+        <p class="text-ink/70">Water and granite define the Fells. Here's where to find the reservation's best-known spots.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <a href="spot-pond.html" class="card-lift bg-stone rounded-lg p-6 shadow-soft">
+          <h3 class="font-display font-semibold text-lg mb-2">Spot Pond</h3>
+          <p class="text-sm text-ink/70">The largest pond in the Fells at ~340 acres &mdash; kayaking, canoeing, and fishing in the East Fells.</p>
+        </a>
+        <a href="observation-tower.html" class="card-lift bg-stone rounded-lg p-6 shadow-soft">
+          <h3 class="font-display font-semibold text-lg mb-2">Elizur Wright Tower</h3>
+          <p class="text-sm text-ink/70">The historic stone tower atop Bear Hill, 317 feet up, with 360-degree views to the Boston skyline.</p>
+        </a>
+        <a href="pickerel-rock.html" class="card-lift bg-stone rounded-lg p-6 shadow-soft">
+          <h3 class="font-display font-semibold text-lg mb-2">Pickerel Rock</h3>
+          <p class="text-sm text-ink/70">A dramatic granite outcrop in the East Fells overlooking Spot Pond &mdash; a locals' favorite lookout.</p>
+        </a>
+        <a href="bellevue-pond.html" class="card-lift bg-stone rounded-lg p-6 shadow-soft">
+          <h3 class="font-display font-semibold text-lg mb-2">Bellevue Pond</h3>
+          <p class="text-sm text-ink/70">A quiet West Fells pond for fishing and peaceful walks, away from the busier trailheads.</p>
+        </a>
+        <a href="wrights-pond.html" class="card-lift bg-stone rounded-lg p-6 shadow-soft">
+          <h3 class="font-display font-semibold text-lg mb-2">Wright's Pond</h3>
+          <p class="text-sm text-ink/70">Tucked into the West Fells &mdash; one of the most off-the-beaten-path spots in the reservation.</p>
+        </a>
+        <a href="middlesex-fells-reservoir.html" class="card-lift bg-stone rounded-lg p-6 shadow-soft">
+          <h3 class="font-display font-semibold text-lg mb-2">Middlesex Fells Reservoir</h3>
+          <p class="text-sm text-ink/70">The historic water-supply reservoir at the heart of the park &mdash; scenic perimeter trails, restricted water access.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLAN YOUR VISIT -->
+  <section id="visit" class="max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-20">
+    <div class="max-w-2xl mb-10">
+      <h2 class="font-display font-semibold text-3xl sm:text-4xl tracking-tight mb-4">How to Get to Middlesex Fells</h2>
+      <p class="text-ink/70">The Fells is easy to reach by car, public transit, or on foot from several surrounding neighborhoods.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-5 mb-10">
+      <div class="bg-white rounded-lg p-7 shadow-soft">
+        <span class="w-11 h-11 rounded-md bg-forest/10 text-forest flex items-center justify-center mb-4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M5 17a2 2 0 0 1-2-2v-2l2-5a2 2 0 0 1 2-1h10a2 2 0 0 1 2 1l2 5v2a2 2 0 0 1-2 2M5 17v2M19 17v2"/><circle cx="7.5" cy="17" r="0.1"/><circle cx="16.5" cy="17" r="0.1"/></svg>
+        </span>
+        <h3 class="font-display font-semibold text-lg mb-2">By Car</h3>
+        <p class="text-sm text-ink/70 mb-3">Free parking is available at multiple lots throughout the reservation. Major lots include Sheepfold, Flynn Rink, and South Border Road trailheads. If the reservation parking lot is full, do not park on Governors Ave &mdash; it's permit parking only. Look for parking on nearby side streets.</p>
+        <a href="parking.html" class="text-sm font-semibold text-forest hover:text-amber inline-flex items-center gap-1">Parking Guide <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="bg-white rounded-lg p-7 shadow-soft">
+        <span class="w-11 h-11 rounded-md bg-slate/10 text-slate flex items-center justify-center mb-4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="14" rx="2"/><path d="M6 13h12M9 21l1-2h4l1 2"/><circle cx="9" cy="16.5" r="0.6"/><circle cx="15" cy="16.5" r="0.6"/></svg>
+        </span>
+        <h3 class="font-display font-semibold text-lg mb-2">By Public Transit</h3>
+        <p class="text-sm text-ink/70 mb-3">The Oak Grove T stop on the Orange Line is a 15-minute walk from the Fells. Three bus routes also connect to the park, including MBTA Bus #99 from Malden Center and Bus #132 from Malden Center to Stone Zoo.</p>
+      </div>
+      <div class="bg-white rounded-lg p-7 shadow-soft">
+        <span class="w-11 h-11 rounded-md bg-amber/10 text-amber flex items-center justify-center mb-4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg>
+        </span>
+        <h3 class="font-display font-semibold text-lg mb-2">Visitor Center</h3>
+        <p class="text-sm text-ink/70 mb-3">The Botume House Visitor Center is located at 4 Woodland Road, Stoneham, on the eastern shore of Spot Pond, half a mile south of Stone Zoo. Trail maps and DCR program info are available there.</p>
+        <a href="tel:+17815902100" class="text-sm font-semibold text-forest hover:text-amber">Call (781) 590-2100 for hours</a>
+      </div>
+    </div>
+
+    <div class="bg-slate/10 border border-slate/20 rounded-lg p-6 sm:p-8 flex flex-wrap items-center justify-between gap-6">
+      <div>
+        <h3 class="font-display font-semibold text-xl mb-1">Hours &amp; Fees</h3>
+        <p class="text-sm text-ink/70">Dawn to dusk, year-round. No entrance fee &mdash; ever.</p>
+      </div>
+      <div class="flex gap-3">
+        <a href="hours.html" class="btn-press bg-forest text-white font-semibold px-5 py-2.5 rounded-md shadow-soft hover:bg-forest-dark">Hours &amp; Fees</a>
+        <a href="parking.html" class="btn-press bg-white border border-ink/15 font-semibold px-5 py-2.5 rounded-md hover:border-forest">Parking</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-white py-16 sm:py-20 border-t border-ink/5">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8">
+      <h2 class="font-display font-semibold text-3xl sm:text-4xl tracking-tight mb-10 text-center">Frequently Asked Questions</h2>
+
+      <div class="flex flex-col gap-3">
+
+        <details class="group bg-stone rounded-lg shadow-soft" open>
+          <summary class="flex items-center justify-between gap-4 p-5 font-display font-semibold">
+            Is Middlesex Fells Reservation free?
+            <svg class="faq-icon shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D5016" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p class="px-5 pb-5 text-sm text-ink/70">Yes. Middlesex Fells Reservation is free and open to the public year-round. There is no entrance fee, and parking is also free at all designated lots.</p>
+        </details>
+
+        <details class="group bg-stone rounded-lg shadow-soft">
+          <summary class="flex items-center justify-between gap-4 p-5 font-display font-semibold">
+            Where is Middlesex Fells Reservation?
+            <svg class="faq-icon shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D5016" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p class="px-5 pb-5 text-sm text-ink/70">Middlesex Fells Reservation spans five towns in Middlesex County: Malden, Medford, Melrose, Stoneham, and Winchester, Massachusetts &mdash; about 5 miles north of downtown Boston.</p>
+        </details>
+
+        <details class="group bg-stone rounded-lg shadow-soft">
+          <summary class="flex items-center justify-between gap-4 p-5 font-display font-semibold">
+            How big is Middlesex Fells Reservation?
+            <svg class="faq-icon shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D5016" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p class="px-5 pb-5 text-sm text-ink/70">Middlesex Fells Reservation covers 2,575 acres of rocky, hilly terrain in eastern Massachusetts, making it one of the largest urban nature reserves in the northeastern United States.</p>
+        </details>
+
+        <details class="group bg-stone rounded-lg shadow-soft">
+          <summary class="flex items-center justify-between gap-4 p-5 font-display font-semibold">
+            Are dogs allowed at Middlesex Fells?
+            <svg class="faq-icon shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D5016" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p class="px-5 pb-5 text-sm text-ink/70">Dogs are welcome throughout the reservation on leash, except inside the designated off-leash area at the Sheepfold field, where dogs must remain under voice control.</p>
+        </details>
+
+        <details class="group bg-stone rounded-lg shadow-soft">
+          <summary class="flex items-center justify-between gap-4 p-5 font-display font-semibold">
+            Can you swim at Middlesex Fells?
+            <svg class="faq-icon shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D5016" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p class="px-5 pb-5 text-sm text-ink/70">No. Swimming is prohibited throughout the Middlesex Fells Reservation &mdash; including Spot Pond, Bellevue Pond, Wright's Pond, and the High, Middle, and Low Reservoirs in Winchester. This applies to all water bodies in the reservation.</p>
+        </details>
+
+        <details class="group bg-stone rounded-lg shadow-soft">
+          <summary class="flex items-center justify-between gap-4 p-5 font-display font-semibold">
+            How many trails does Middlesex Fells have?
+            <svg class="faq-icon shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D5016" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p class="px-5 pb-5 text-sm text-ink/70">The reservation has over 100 miles of trails for hiking, mountain biking, cross-country skiing, and horseback riding, ranging from easy nature walks to challenging ridge routes.</p>
+        </details>
+
+        <details class="group bg-stone rounded-lg shadow-soft">
+          <summary class="flex items-center justify-between gap-4 p-5 font-display font-semibold">
+            What is the best trail at Middlesex Fells?
+            <svg class="faq-icon shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D5016" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p class="px-5 pb-5 text-sm text-ink/70">The Skyline Trail is the most popular. It offers panoramic Boston views from the park's granite ridges and covers 7.6 miles. For beginners, the Long Pond Nature Trail at 1.7 miles is a great starting point.</p>
+        </details>
+
+        <details class="group bg-stone rounded-lg shadow-soft">
+          <summary class="flex items-center justify-between gap-4 p-5 font-display font-semibold">
+            Is Middlesex Fells good for families?
+            <svg class="faq-icon shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D5016" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p class="px-5 pb-5 text-sm text-ink/70">Yes &mdash; it's one of the best family outdoor destinations near Boston. The Sheepfold picnic area, easy flat trails, and open fields make it ideal for kids of all ages.</p>
+        </details>
+
+        <details class="group bg-stone rounded-lg shadow-soft">
+          <summary class="flex items-center justify-between gap-4 p-5 font-display font-semibold">
+            What towns is Middlesex Fells in?
+            <svg class="faq-icon shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D5016" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p class="px-5 pb-5 text-sm text-ink/70">Middlesex Fells Reservation covers land in Malden, Medford, Melrose, Stoneham, and Winchester, Massachusetts.</p>
+        </details>
+
+        <details class="group bg-stone rounded-lg shadow-soft">
+          <summary class="flex items-center justify-between gap-4 p-5 font-display font-semibold">
+            Is there public transit to Middlesex Fells?
+            <svg class="faq-icon shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D5016" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p class="px-5 pb-5 text-sm text-ink/70">Yes &mdash; the Oak Grove T stop on the Orange Line is a 15-minute walk from the reservation. MBTA bus routes #99 and #132 also provide access from Malden Center.</p>
+        </details>
+
+      </div>
+
+      <p class="text-center text-sm text-ink/60 mt-8">Have another question? Visit our <a href="faq.html" class="text-forest font-semibold hover:text-amber">full FAQ page</a>.</p>
+    </div>
+  </section>
+
+  <!-- EXPLORE MORE -->
+  <section class="bg-white py-16 sm:py-20 border-b border-ink/5">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <p class="text-amber font-semibold tracking-[0.18em] uppercase text-xs sm:text-sm mb-3">Explore More</p>
+      <h2 class="font-display font-semibold text-3xl sm:text-4xl tracking-tight mb-10">Everything You Need to Know About the Fells</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <a href="trail-map.html" class="card-lift bg-stone rounded-lg p-6 shadow-soft">
+          <p class="text-amber text-xs font-semibold uppercase tracking-wider mb-2">Routes</p>
+          <p class="font-display font-semibold">All Trails</p>
+        </a>
+        <a href="parking.html" class="card-lift bg-stone rounded-lg p-6 shadow-soft">
+          <p class="text-amber text-xs font-semibold uppercase tracking-wider mb-2">Getting Here</p>
+          <p class="font-display font-semibold">Parking Guide</p>
+        </a>
+        <a href="dog-park.html" class="card-lift bg-stone rounded-lg p-6 shadow-soft">
+          <p class="text-amber text-xs font-semibold uppercase tracking-wider mb-2">Bring the Pup</p>
+          <p class="font-display font-semibold">Dogs Guide</p>
+        </a>
+        <a href="swimming.html" class="card-lift bg-stone rounded-lg p-6 shadow-soft">
+          <p class="text-amber text-xs font-semibold uppercase tracking-wider mb-2">On the Water</p>
+          <p class="font-display font-semibold">Swimming at Spot Pond</p>
+        </a>
+        <a href="mountain-biking.html" class="card-lift bg-stone rounded-lg p-6 shadow-soft">
+          <p class="text-amber text-xs font-semibold uppercase tracking-wider mb-2">On Wheels</p>
+          <p class="font-display font-semibold">Mountain Biking</p>
+        </a>
+        <div class="bg-stone rounded-lg p-6 shadow-soft">
+          <p class="text-amber text-xs font-semibold uppercase tracking-wider mb-2">Flora &amp; Fauna</p>
+          <p class="font-display font-semibold">Wildlife &amp; Nature</p>
+        </div>
+        <a href="cross-country-skiing.html" class="card-lift bg-stone rounded-lg p-6 shadow-soft">
+          <p class="text-amber text-xs font-semibold uppercase tracking-wider mb-2">Cold Season</p>
+          <p class="font-display font-semibold">Winter Activities</p>
+        </a>
+        <div class="bg-stone rounded-lg p-6 shadow-soft">
+          <p class="text-amber text-xs font-semibold uppercase tracking-wider mb-2">For Families</p>
+          <p class="font-display font-semibold">Picnic Areas</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="bg-ink text-white/70">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+    <div class="lg:col-span-1">
+      <p class="font-display font-semibold text-white text-lg mb-3">Middlesex Fells <span class="text-amber">Reservation</span></p>
+      <p class="text-sm leading-[1.7]">A public recreation area managed by the Massachusetts Department of Conservation &amp; Recreation. Free and open dawn to dusk, year-round.</p>
+    </div>
+    <div>
+      <p class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Explore</p>
+      <ul class="space-y-2.5 text-sm">
+        <li><a href="trail-map.html" class="hover:text-amber">All Trails</a></li>
+        <li><a href="hiking.html" class="hover:text-amber">Hiking</a></li>
+        <li><a href="mountain-biking.html" class="hover:text-amber">Mountain Biking</a></li>
+        <li><a href="canoe-and-kayaking.html" class="hover:text-amber">Canoe &amp; Kayaking</a></li>
+        <li><a href="cross-country-skiing.html" class="hover:text-amber">Cross-Country Skiing</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Plan a Visit</p>
+      <ul class="space-y-2.5 text-sm">
+        <li><a href="parking.html" class="hover:text-amber">Parking Guide</a></li>
+        <li><a href="hours.html" class="hover:text-amber">Hours &amp; Fees</a></li>
+        <li><a href="dog-park.html" class="hover:text-amber">Dogs Guide</a></li>
+        <li><a href="about.html" class="hover:text-amber">About the Park</a></li>
+        <li><a href="faq.html" class="hover:text-amber">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Visitor Center</p>
+      <p class="text-sm leading-[1.7]">Botume House<br />4 Woodland Road<br />Stoneham, MA 02180<br /><a href="tel:+17815902100" class="hover:text-amber">(781) 590-2100</a></p>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-6 flex flex-wrap items-center justify-between gap-2 text-xs text-white/50">
+      <p>&copy; 2026 Middlesex Fells Reservation Guide &middot; Not an official DCR website</p>
+      <p>Managed by the MA Dept. of Conservation &amp; Recreation</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle.addEventListener('click', () => {
+    const isOpen = !menu.classList.contains('closed');
+    menu.classList.toggle('closed');
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+  });
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.add('closed');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
 
 </body>
 </html>
